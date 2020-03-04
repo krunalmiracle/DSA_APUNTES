@@ -1,0 +1,79 @@
+#Initializes all the files in the current directory as repository
+git init .
+#Stages all the files in the staging area
+git add .
+#Git commits all the files in the staging area but it opens an editor to write an commit title and message
+git commit -a
+#Adds a commit to the repository with a message faster way than the last one
+git commit -m "Add Message"
+#Creates a new alias for a command in git, in this case it creates a alias for representing the shorter version of log
+git config --global alias.newalias "log --oneline --graph --decorate --all"
+#Using the aforementioned alias command created
+git newalias
+#Used to commit without staging the file before, anychanges gets commited.
+git commit -am "Commit Message"
+#Selects file from master branch and commit version 0 from the history of the master branch.
+git checkout master~0 filename
+#Checkout to newer version of git from a older commit while ignoring changes which haven't been commited
+git checkout hashcode -f
+#Deletes the file, cause we want to substitute it from the version control
+rm -f filename
+#Checking out just the file we want to substitite from the version control selected two commands before this one!
+git checkout filename
+#Removes the selected global rule in this case, a rule starting with "core"
+git config --global --remove-section core
+#Lists all the global value
+ git config --global --list
+#Runs the default Global Editor
+git config --global -e 
+#Sets Visual Code as default text editor
+git config --global core.editor "code --wait"
+#Test the default text editor to see which is choosen as default
+git config --global -e\
+#Sets new different difftool (difftool is a data comparison tool that calculates and displays the differences between two files)
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+#Compares different version of the file in difftool by default is now VSCODE
+git difftool HEAD~1 HEAD
+#Git difftool with specified file for comparison
+git difftool HEAD~1 HEAD --filename
+#Git difftool with specified commit point hashcode and the last commit, but can be changed to any commit 
+git difftool hashcode_commit HEAD --filename(optional)
+#Git Add changes which were made out of Git and updates them
+git add -u
+#Adds all changes and modfications made to git repo files outside from git , example renaming of a file outside of git
+git add -A
+#Git ignore files using .gitignore add file names for example app.log or to exclude all files of  format log *.log inside the .gitignore file
+mate .gitignore 
+
+/////Adding Already Existing local git repository to github//////
+#First create a new repository in github and copy the given link
+example: repository url --> https://github.com/krunalmiracle/Example.git
+# Sets the new remote
+git remote add origin remote repository URL
+# Verifies the new remote URL
+git remote -v
+# Verifies the new remote URL
+# Pushes the changes in your local repository up to the remote repository you specified as the origin
+#SAME CAN BE DONE VIA GITHUB GUI CLIENT AND NO NEED TO ENTER THE WEB,FASTER
+git push origin master
+
+#This command shows us all the commands we have taken in git including commits, resets, checkout...
+git reflog
+#Reset or can also be called traveling in timeline to an posterior version can be soft, mixed or hard. Soft stages all the changes in the staging area
+#while hard is the most destrective and it deletes all the changes since the timeline choosen.
+git reset hashcode --mixed
+#Git Pull inverse of push, merges the new changes in the timeline with the local repo
+git pull 
+#Git fetch which fetches the new files in the timeline to local repo without merging
+git fetch
+#git merge, merges the new changes with the current ones in local repo
+git merge remotes/<remote-name>/<remote-branch-name> master
+#To see all the git branches in the remote directory 
+git branch -r
+#Revert git commit by creating a new commit which has an inverse effect of the current commit, if it has been already pushed to the remote repository, 
+git revert
+#If the commits haven't been pushed we can reset
+git reset HEAD~1
