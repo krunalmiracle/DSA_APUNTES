@@ -28,8 +28,8 @@ git config --global --remove-section core
 git config --global -e 
 #Sets Visual Code as default text editor
 git config --global core.editor "code --wait"
-#Test the default text editor to see which is choosen as default
-git config --global -e\
+#Test the default text editor to see which is the current one as default
+git config --global -e
 #Sets new different difftool (difftool is a data comparison tool that calculates and displays the differences between two files)
 [diff]
     tool = vscode
